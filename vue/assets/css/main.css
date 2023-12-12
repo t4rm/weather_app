@@ -1,0 +1,215 @@
+/* Palette : */
+/* #9AE0FD -> Eau */
+/* #AFCA07 -> Vert herbe*/
+/* #ACC900 -> Vert herbe clair*/
+/* #4DB201 -> Vert*/
+/* #4CB400 -> Vert foncé*/
+/* #FBD202 -> Jaune*/
+
+:root {
+    --c-bg: rgb(75, 75, 75);
+    --c-text: hsl(0, 0%, 10%);
+    --c-text-opacity: hsla(0, 0%, 10%, 0.5);
+    --pad: max(20px, 4vmin)
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';font-size: 17px;
+    font-weight: 600;
+}
+
+body {
+    position: absolute;
+    height: auto;
+    bottom: calc(var(--pad)*1.5);
+    top: calc(var(--pad)*1.5);
+    left: var(--pad);
+    right: var(--pad);
+    background-color: var(--c-bg);
+}
+
+.app {
+    border-radius: 12px;
+    background-color: white;
+    padding: var(--pad);
+}
+
+.full {
+    height: calc(100vh - var(--pad) * 5);
+    width: calc(100vw - var(--pad) * 4);
+}
+
+.fill {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Display Layout */
+/* PC : */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: calc(var(--pad)/2);
+    grid-auto-flow: row;
+    grid-template-areas:
+        "main main sec sec sec3 sec3"
+        "main main sec2 sec2 sec4 sec4"
+        "main main th th2 th3 th4";
+}
+
+.main {
+    grid-area: main;
+    margin-right: calc(var(--pad)*0.7);
+}
+
+.sec {
+    grid-area: sec;
+}
+
+.sec2 {
+    grid-area: sec2;
+}
+
+.th {
+    grid-area: th;
+}
+
+.th2 {
+    grid-area: th2;
+}
+
+.sec3 {
+    grid-area: sec3;
+}
+
+.sec4 {
+    grid-area: sec4;
+}
+
+.th3 {
+    grid-area: th3;
+}
+
+.th4 {
+    grid-area: th4;
+}
+
+
+/* PHONE : */
+@media (max-width: 1000px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .main {
+        margin-right: 0;
+    }
+        
+    .container > div {
+        height: 100%;
+        width: 100%;
+    }
+
+}
+
+/* GLASS */
+.container > div {
+    background: rgba(167, 226, 240, 0.16);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Agencement MAIN */
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.icon > img {
+    width: 100vw;
+    max-width: 40%;
+}
+
+.state {
+    color: orange;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.state * {
+    font-weight: 400;
+    margin: 0;
+}
+
+.state > h1 {
+    font-size: 150pt;
+    transform: scaleY(1.15);
+    height: fit-content;
+}
+
+.state > .operator {
+    font-size: 90pt;
+    align-self: center;
+}
+
+.state > .degree {
+    font-size: 40pt;
+}
+
+/* Statistics 2 COLUMN Layout */
+.statistics {
+    font-weight: 400;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: 0 auto;
+}
+
+.feels {
+    position: relative;
+    top: -20px;
+}
+
+/* DOTS */
+.dot {
+    display: flex;
+    align-items: center;
+}
+
+.dot * {
+    margin-right: 6px;
+}
+
+.visible {
+    overflow: visible;
+}
