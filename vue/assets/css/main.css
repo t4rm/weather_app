@@ -1,3 +1,4 @@
+
 /* Palette : */
 /* #9AE0FD -> Eau */
 /* #AFCA07 -> Vert herbe*/
@@ -29,6 +30,7 @@ body {
     left: var(--pad);
     right: var(--pad);
     background-color: var(--c-bg);
+    overflow: auto;
 }
 
 .app {
@@ -119,10 +121,22 @@ body {
 }
 
 /* GLASS */
-.container > div {
+.container > div, .glass {
     background: rgba(167, 226, 240, 0.16);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.container > div > h3 {
+    margin: 0;
+}
+
+
+.noblur {
+    background: rgba(239, 252, 255, 0.16);
+    backdrop-filter: blur(12.3px);
+    -webkit-backdrop-filter: blur(12.3px);
 }
 
 /* Agencement MAIN */
@@ -204,6 +218,7 @@ header {
 .dot {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .dot * {
@@ -212,4 +227,35 @@ header {
 
 .visible {
     overflow: visible;
+}
+
+/* HOVER MORE DETAILS : */
+.aqi-container {
+    position: absolute;
+    visibility: hidden;
+}
+.aqi:hover {
+    cursor: copy;
+}
+
+.aqi:hover > .aqi-container {
+    visibility: visible;
+    display: flex;
+}
+
+.aqi:hover > .aqi-container > .aqi-stats {
+    opacity: 1;
+    transition: 0.7s;
+}
+
+.aqi-stats {
+    position: relative;
+    margin: 0;
+    display: grid;
+    grid-template-columns: fit-content(100%) fit-content(100%);
+    gap: 15px;
+    padding: 10px;
+    font-size: 18px;
+    opacity: 0;
+    transition: 0.7s;
 }

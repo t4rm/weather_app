@@ -11,35 +11,40 @@ function interpolateColor($color1, $color2, $factor)
     return sprintf("#%02x%02x%02x", $r, $g, $b);
 }
 
+function factorise($intervals, $param) {
+    // Trouver l'intervalle correspondant à la pression atmosphérique
+    $intervalKeys = array_keys($intervals);
+
+    $index = 0;
+    while ($index < count($intervalKeys) - 1 && $param > $intervalKeys[$index + 1]) {
+        $index++;
+    }
+
+    // Calculer le facteur d'interpolation entre les couleurs
+    $factor = ($param - $intervalKeys[$index]) / ($intervalKeys[$index + 1] - $intervalKeys[$index]);
+
+    // Interpoler entre les couleurs adjacentes
+    return interpolateColor($intervals[$intervalKeys[$index]], $intervals[$intervalKeys[$index + 1]], $factor);
+}
+
 function getTemperatureColor($temperature)
 {
-    $colors = [
-        '#dbdbff', // Températures extrêmement froides (Bleu foncé)
-        '#add6ff', // Températures très froides (Bleu clair)
-        '#a4b7ff', // Températures froides (Bleu moyen)
-        '#99ccff', // Températures fraîches (Bleu pastel)
-        '#99ff99', // Températures modérées (Vert clair)
-        '#66ff66', // Températures agréables (Vert moyen)
-        '#ffff66', // Températures chaudes (Jaune)
-        '#ff9900', // Températures très chaudes (Orange)
-        '#ff3300', // Températures extrêmement chaudes (Rouge)
+    $temperatureInterval = [
+       -20 =>  '#dbdbff', // Températures extrêmement froides (Bleu foncé)
+       -10 =>  '#add6ff', // Températures très froides (Bleu clair)
+       0 =>  '#a4b7ff', // Températures froides (Bleu moyen)
+       10 => '#99ccff', // Températures fraîches (Bleu pastel)
+       15 => '#99ff99', // Températures modérées (Vert clair)
+       20 => '#66ff66', // Températures agréables (Vert moyen)
+       25 => '#ffff66', // Températures chaudes (Jaune)
+       30 => '#ff9900', // Températures très chaudes (Orange)
+       40 => '#ff3300', // Températures extrêmement chaudes (Rouge)
     ];
 
     // Limiter la température aux plages définies
     $temperature = max(min($temperature, 40), -20);
 
-    // Calculer la position relative dans l'intervalle
-    $position = ($temperature + 20) / 60;
-
-    // Calculer l'indice des couleurs adjacentes
-    $index1 = floor($position * (count($colors) - 1));
-    $index2 = min($index1 + 1, count($colors) - 1);
-
-    // Calculer le facteur d'interpolation entre les couleurs
-    $factor = ($position - $index1 / (count($colors) - 1)) * (count($colors) - 1);
-
-    // Interpoler entre les couleurs adjacentes
-    return interpolateColor($colors[$index1], $colors[$index2], $factor);
+    return factorise($temperatureInterval, $temperature);
 }
 
 function getWindSpeedColor($windSpeed)
@@ -59,18 +64,7 @@ function getWindSpeedColor($windSpeed)
     // Limiter la vitesse du vent aux plages définies
     $windSpeed = max(min($windSpeed, 70), 0);
 
-    // Trouver l'intervalle correspondant à la vitesse du vent
-    $intervalKeys = array_keys($windSpeedIntervals);
-    $index = 0;
-    while ($index < count($intervalKeys) - 1 && $windSpeed > $intervalKeys[$index + 1]) {
-        $index++;
-    }
-
-    // Calculer le facteur d'interpolation entre les couleurs
-    $factor = ($windSpeed - $intervalKeys[$index]) / ($intervalKeys[$index + 1] - $intervalKeys[$index]);
-
-    // Interpoler entre les couleurs adjacentes
-    return interpolateColor($windSpeedIntervals[$intervalKeys[$index]], $windSpeedIntervals[$intervalKeys[$index + 1]], $factor);
+    return factorise($windSpeedIntervals, $windSpeed);
 }
 
 function getHumidityColor($humidity)
@@ -87,46 +81,24 @@ function getHumidityColor($humidity)
     // Limiter l'humidité aux plages définies
     $humidity = max(min($humidity, 100), 0);
 
-    // Trouver l'intervalle correspondant à l'humidité
-    $intervalKeys = array_keys($humidityIntervals);
-    $index = 0;
-    while ($index < count($intervalKeys) - 1 && $humidity > $intervalKeys[$index + 1]) {
-        $index++;
-    }
-
-    // Calculer le facteur d'interpolation entre les couleurs
-    $factor = ($humidity - $intervalKeys[$index]) / ($intervalKeys[$index + 1] - $intervalKeys[$index]);
-
-    // Interpoler entre les couleurs adjacentes
-    return interpolateColor($humidityIntervals[$intervalKeys[$index]], $humidityIntervals[$intervalKeys[$index + 1]], $factor);
+    return factorise($humidityIntervals, $humidity);
 }
 
 function getAirQualityColor($airQualityIndex)
 {
     $airQualityIntervals = [
-        0 => '#00FF00',   // Good (Vert)
-        51 => '#FFFF00',  // Moderate (Jaune)
-        101 => '#FFA500', // Unhealthy for Sensitive Groups (Orange)
-        151 => '#FF0000', // Unhealthy (Rouge)
-        201 => '#800080', // Very Unhealthy (Violet)
-        301 => '#800000', // Hazardous (Marron)
+        1 => '#00FF00',   // Good (Vert)
+        2 => '#FFFF00',  // Moderate (Jaune)
+        3 => '#FFA500', // Unhealthy for Sensitive Groups (Orange)
+        4 => '#FF0000', // Unhealthy (Rouge)
+        5 => '#800080', // Very Unhealthy (Violet)
+        6 => '#800000', // Hazardous (Marron)
     ];
 
     // Limiter l'indice de qualité de l'air aux plages définies
-    $airQualityIndex = max(min($airQualityIndex, 500), 0);
+    $airQualityIndex = max(min($airQualityIndex, 6), 0);
 
-    // Trouver l'intervalle correspondant à l'indice de qualité de l'air
-    $intervalKeys = array_keys($airQualityIntervals);
-    $index = 0;
-    while ($index < count($intervalKeys) - 1 && $airQualityIndex > $intervalKeys[$index + 1]) {
-        $index++;
-    }
-
-    // Calculer le facteur d'interpolation entre les couleurs
-    $factor = ($airQualityIndex - $intervalKeys[$index]) / ($intervalKeys[$index + 1] - $intervalKeys[$index]);
-
-    // Interpoler entre les couleurs adjacentes
-    return interpolateColor($airQualityIntervals[$intervalKeys[$index]], $airQualityIntervals[$intervalKeys[$index + 1]], $factor);
+    return factorise($airQualityIntervals, $airQualityIndex);
 }
 
 function getUVIndexColor($uvIndex)
@@ -142,18 +114,7 @@ function getUVIndexColor($uvIndex)
     // Limiter l'indice UV aux plages définies
     $uvIndex = max(min($uvIndex, 11), 0);
 
-    // Trouver l'intervalle correspondant à l'indice UV
-    $intervalKeys = array_keys($uvIndexIntervals);
-    $index = 0;
-    while ($index < count($intervalKeys) - 1 && $uvIndex > $intervalKeys[$index + 1]) {
-        $index++;
-    }
-
-    // Calculer le facteur d'interpolation entre les couleurs
-    $factor = ($uvIndex - $intervalKeys[$index]) / ($intervalKeys[$index + 1] - $intervalKeys[$index]);
-
-    // Interpoler entre les couleurs adjacentes
-    return interpolateColor($uvIndexIntervals[$intervalKeys[$index]], $uvIndexIntervals[$intervalKeys[$index + 1]], $factor);
+    return factorise($uvIndexIntervals, $uvIndex);
 }
 
 function getPressureColor($pressure)
@@ -169,16 +130,108 @@ function getPressureColor($pressure)
     // Limiter la pression atmosphérique aux plages définies
     $pressure = max(min($pressure, 1100), 900);
 
-    // Trouver l'intervalle correspondant à la pression atmosphérique
-    $intervalKeys = array_keys($pressureIntervals);
-    $index = 0;
-    while ($index < count($intervalKeys) - 1 && $pressure > $intervalKeys[$index + 1]) {
-        $index++;
-    }
+    return factorise($pressureIntervals, $pressure);
+}
 
-    // Calculer le facteur d'interpolation entre les couleurs
-    $factor = ($pressure - $intervalKeys[$index]) / ($intervalKeys[$index + 1] - $intervalKeys[$index]);
+function getCoColor($co)
+{
+    $coIntervals = [
+        0 => '#1dcfff',   // Très basse (Bleu)
+        1000 => '#008080',   // Basse (Teal)
+        2000 => '#00FF00',  // Normale (Vert)
+        10000 => '#FF0000',   // Very High (Rouge)
+    ];
 
-    // Interpoler entre les couleurs adjacentes
-    return interpolateColor($pressureIntervals[$intervalKeys[$index]], $pressureIntervals[$intervalKeys[$index + 1]], $factor);
+    // Limiter la pression atmosphérique aux plages définies
+    $co = max(min($co, 10000), 0);
+
+    return factorise($coIntervals, $co);
+}
+
+function getNo2Color($no2)
+{
+    $no2Intervals = [
+        0 => '#1dcfff',   // Très Bon (Bleu)
+        10 => '#008080',   // Bon (Teal)
+        20 => '#00FF00',   // Acceptable (Vert)
+        40 => '#FFFF00',   // Moyen (Jaune)
+        60 => '#FFA500',  // Mauvais (Orange)
+        100 => '#FF0000',  // Très Mauvais (Rouge)
+        200 => '#800080', // Dangereux (Violet)
+        1000 => '#000000', // Dangereux (Violet)
+    ];
+
+    // Limiter l'indice de qualité de l'air aux plages définies
+    $no2 = max(min($no2, 1000), 0);
+
+    return factorise($no2Intervals, $no2);
+}
+
+function getO3Color($o3)
+{
+    $ozoneIntervals = [
+        0 => '#1dcfff',    // Très Bon (Bleu)
+        50 => '#008080',    // Bon (Teal)
+        100 => '#00FF00',   // Acceptable (Vert)
+        150 => '#FFFF00',   // Moyen (Jaune)
+        200 => '#FFA500',   // Mauvais (Orange)
+        300 => '#FF0000',   // Très Mauvais (Rouge)
+        400 => '#800080',   // Dangereux (Violet)
+    ];
+
+    // Limiter l'indice de qualité de l'air aux plages définies
+    $o3 = max(min($o3, 400), 0);
+
+    return factorise($ozoneIntervals, $o3);
+}
+
+function getSo2Color($so2)
+{
+    $so2Intervals = [
+        0 => '#1dcfff',    // Très Bon (Bleu)
+        20 => '#008080',    // Bon (Teal)
+        50 => '#00FF00',   // Acceptable (Vert)
+        100 => '#FFFF00',   // Moyen (Jaune)
+        200 => '#FFA500',   // Mauvais (Orange)
+        350 => '#FF0000',   // Très Mauvais (Rouge)
+        500 => '#800080',   // Dangereux (Violet)
+    ];
+
+    // Limiter l'indice de qualité de l'air aux plages définies
+    $so2 = max(min($so2, 500), 0);
+
+    return factorise($so2Intervals, $so2);
+}
+
+function getPm2_5Color($pm25)
+{
+    $pm25Intervals = [
+        0 => '#1dcfff',    // Très Bon (Bleu)
+        10 => '#008080',   // Bon (Teal)
+        20 => '#00FF00',   // Acceptable (Vert)
+        25 => '#FFFF00',   // Moyen (Jaune)
+        50 => '#FFA500',   // Mauvais (Orange)
+        100 => '#FF4500',  // Très Mauvais (Rouge intense)
+        150 => '#8B0000',  // Dangereux (Bordeaux intense)
+    ];
+
+    // Limiter l'indice de qualité de l'air aux plages définies
+    $pm25 = max(min($pm25, 150), 0);
+
+    return factorise($pm25Intervals, $pm25);
+}
+
+function getPm10Color($pm10)
+{
+    $pm10Intervals = [
+        0 => '#1dcfff',   
+        30 => '#00FF00',  
+        40 => '#FFFF00',  
+        50 => '#FF4500',
+        80 => '#8B0000',  
+    ];
+
+    // Limiter l'indice de qualité de l'air aux plages définies
+    $pm10 = max(min($pm10, 80), 0);
+    return factorise($pm10Intervals, $pm10);
 }
