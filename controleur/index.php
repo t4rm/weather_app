@@ -29,6 +29,7 @@ $iconFile = $api->convertIconSVG($result["current"]["condition"]["code"], $resul
 $icon = "../vue/assets/images/weather/".$iconFile;
 $uv = $result["current"]["uv"];
 $windKph = $result["current"]["wind_kph"];
+$windDir = $result["current"]["wind_dir"];
 $humidity = $result["current"]["humidity"];
 $pressureMb = $result["current"]["pressure_mb"];
 $precipMm =  $result["current"]["precip_mm"]*100;
@@ -40,6 +41,11 @@ $o3 = $result["current"]["air_quality"]["o3"];
 $so2 = $result["current"]["air_quality"]["so2"];
 $pm2_5 = $result["current"]["air_quality"]["pm2_5"];
 $pm10 = $result["current"]["air_quality"]["pm10"];
+    // ASTRO :
+$sunrise = $result["forecast"]["forecastday"][0]["astro"]["sunrise"];
+$sunset = $result["forecast"]["forecastday"][0]["astro"]["sunset"];
+$moonrise = $result["forecast"]["forecastday"][0]["astro"]["moonrise"];
+$moonset = $result["forecast"]["forecastday"][0]["astro"]["moonset"];
 
 // Définition des couleurs en fonction des variables :
 $tempColor = getTemperatureColor($tempCelsius);

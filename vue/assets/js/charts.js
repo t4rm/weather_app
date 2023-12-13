@@ -1,5 +1,4 @@
 // Création d'un graphique pour la température
-
 const xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 const oddXValues = xValues.filter((num, i) => i % 2 === 1)
 
@@ -27,7 +26,6 @@ function getGradient(ctx, chartArea) {
 
     return gradient;
 }
-
 
 new Chart("tempChart", {
     type: "line",
@@ -67,6 +65,7 @@ new Chart("tempChart", {
             },
             y: {
                 display: false
+                // max: 11
             },
         },
 
@@ -76,16 +75,19 @@ new Chart("tempChart", {
             }
         },
         responsive: true,
+        maintainAspectRatio: false
     },
 
 });
 
 // 
 
+const tmp = xValues.splice(7,12);
+
 new Chart("uvChart", {
     type: "bar",
     data: {
-        labels: xValues.splice(7, 12),
+        labels: tmp,
         datasets: [{
             data: uvValues.splice(7, 12),
             label: "UV",
@@ -99,11 +101,13 @@ new Chart("uvChart", {
                 grid: {
                     display: false
                 },
+                ticks: {
+                    beginAtZero: false,
+                },
 
             },
             y: {
                 display: false,
-                // max: 11
             },
         },
 
@@ -112,32 +116,25 @@ new Chart("uvChart", {
                 display: false
             }
         },
+        maintainAspectRatio: false,
         responsive: true
+
     },
 });
 
 
 // 
+let precipitationValuesPerc = (precipitationValues).map(function (num) {return num * 100})
 
-// let precipitationValuesOdd = precipitationValues.filter((num, i) => i % 2 === 1)
-var yourImage = new Image();
-yourImage.src ='../vue/assets/images/weather/raindrop.svg';
-
-var drop = CanvasRenderingContext2D.drawImage("'../vue/assets/images/weather/raindrop.svg'")
-let precipitationMap = [];
-precipitationValues.forEach((element, i) => {
-    precipitationMap.push({x: i, y: Math.max(Math.min(element*100), 10), r: Math.max(Math.min(element*30), 5)})
-});
-
-console.log(precipitationMap)
 new Chart("precipChart", {
-    type: "bubble",
+    type: "line",
     data: {
         labels: xValues,
         datasets: [{
-            data: precipitationMap,
+            data: precipitationValuesPerc,
             label: "Precipitation (%)",
-            pointStyle: yourImage
+            tension: 0.4,
+
         }],
     },
     options: {
@@ -160,6 +157,9 @@ new Chart("precipChart", {
                 display: false
             }
         },
-        responsive: true
+        responsive: true,
+        maintainAspectRatio: false
     },
 });
+
+// 
