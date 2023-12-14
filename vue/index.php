@@ -14,6 +14,9 @@
         const uvValues = <?= json_encode($uvArray) ?>;
         const uvColorValues = <?= json_encode($uvColorArray) ?>;
         const precipitationValues = <?= json_encode($precipitationArray) ?>;
+        let currentTime = <?=$currentHour?>;
+        let sunrise = <?=$sunriseHour?>;
+        let sunset = <?=$sunsetHour?>;
         // A modifier en AJAX
     </script>
     <link rel="stylesheet" href="../vue/assets/css/main.css">

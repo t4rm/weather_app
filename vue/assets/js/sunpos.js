@@ -1,7 +1,7 @@
 // Données d'entrée
-let sunrise = 6; // Heure du lever du soleil
-let sunset = 18; // Heure du coucher du soleil
-let currentTime = 12; // Heure actuelle
+sunrise = parseInt(sunrise); // Heure du lever du soleil
+sunset = parseInt(sunset); // Heure du coucher du soleil
+currentTime = parseInt(currentTime); // Heure actuelle
 
 // Calculer la position du soleil
 let sunPosition = (currentTime - sunrise) / (sunset - sunrise);
@@ -50,11 +50,11 @@ let sun = svg.append("image")
     .attr("height", 30);
 
 let startCircle = svg.append("circle")
-    .attr("r", 5)
+    .attr("r", 2)
     .attr("fill", "orange");
 
 let endCircle = svg.append("circle")
-    .attr("r", 5)
+    .attr("r", 2)
     .attr("fill", "orange");
 
 // Mettre à jour la position du soleil et de son fond

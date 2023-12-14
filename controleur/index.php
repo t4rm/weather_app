@@ -11,7 +11,7 @@ error_reporting(E_ALL);
 $currentDateTime = new DateTime('now');
 $localization = '';
 $date = "Today, " . $currentDateTime->format('M d');
-$dayHour = '';
+$dayHour = $currentDateTime->format('h:H A');
 // Appel à l'API :
 $param = "Metz";
 $api = new Weather();
@@ -46,6 +46,13 @@ $sunrise = $result["forecast"]["forecastday"][0]["astro"]["sunrise"];
 $sunset = $result["forecast"]["forecastday"][0]["astro"]["sunset"];
 $moonrise = $result["forecast"]["forecastday"][0]["astro"]["moonrise"];
 $moonset = $result["forecast"]["forecastday"][0]["astro"]["moonset"];
+// ASTRO to TIME :
+$sunsetTime = DateTime::createFromFormat("h:i A", $sunset);
+$sunriseTime = DateTime::createFromFormat("h:i A", $sunrise);
+// $sunTime = DateTime::createFromFormat("h:i A", $sunrise);
+$sunsetHour = $sunsetTime->format('H');
+$sunriseHour = $sunriseTime->format('H');
+$currentHour = $currentDateTime->format('H');
 
 // Définition des couleurs en fonction des variables :
 $tempColor = getTemperatureColor($tempCelsius);
