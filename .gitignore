@@ -1,5 +1,4 @@
 .vite/
 node_modules
-modele/weatherAPI.php
 .env
 todo
