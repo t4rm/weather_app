@@ -294,12 +294,7 @@ header {
     transition: 0.7s;
 }
 
-.astro {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-}
+
 /* Forecast des prochains jours : */
 .forecast-day {
     display: grid;
@@ -381,7 +376,28 @@ header {
     border: 0;
     transform: scale(1.1);
 }
+.astro {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    justify-self: end;
+    margin-top: auto !important;
+}
 
+.sunpath {
+    height: 100%;
+    min-height: 0;
+}
+
+.sunpos-grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.sunpos-grid * {
+    margin: 0;
+}
 
 /* PHONE : */
 @media (max-width: 1000px) {

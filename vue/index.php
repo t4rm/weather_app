@@ -56,7 +56,7 @@
                         <span class="dot">
                             <svg height="20" width="20" style="display: block">
                                 <circle cx="10" cy="10" r="7" fill="<?= $tempColor ?>"></circle>
-                            </svg><?= $windKph ?> km/h
+                            </svg><?= $windKph ?> km/h <?=$windDir?>
                         </span>
                         <span>Humidity</span>
                         <span class="dot">
@@ -137,9 +137,13 @@
                     </div>
                 </div>
                 <div class="sec2">
-                    <div class="astro">
-                        <span><?= $sunrise ?> Sunrise</span>
-                        <span>Sunset <?= $sunset ?></span>
+                    <div class="sunpos-grid">
+                        <h3 >Sunposition (approx)</h3>
+                        <div class="sunpath"></div>
+                        <div class="astro">
+                            <span><?= $sunrise ?> Sunrise</span>
+                            <span>Sunset <?= $sunset ?></span>
+                        </div>
                     </div>
                 </div>
 
@@ -169,7 +173,7 @@
         </div>
     </div>
     <script src="../vue/assets/js/charts.js" type="module"></script>
-    <!-- <script src="../vue/assets/js/sunpos.js" type="module"></script> -->
+    <script src="../vue/assets/js/sunpos.js" type="module"></script>
 
 </body>
 

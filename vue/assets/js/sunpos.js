@@ -1,7 +1,7 @@
 // Données d'entrée
 let sunrise = 6; // Heure du lever du soleil
 let sunset = 18; // Heure du coucher du soleil
-let currentTime = 15; // Heure actuelle
+let currentTime = 12; // Heure actuelle
 
 // Calculer la position du soleil
 let sunPosition = (currentTime - sunrise) / (sunset - sunrise);
@@ -11,10 +11,12 @@ let container = d3.select(".sunpath")
 let svg = container.append("svg")
     .attr("width", "100%")
     .attr("height", "100%")
-    .attr("viewBox", "0 0 200 100") // Ajout de viewBox pour rendre le SVG responsive
+    .attr("viewBox", "-5 -55 170 60")
+    // .attr("preserveAspectRatio","none")
+    // .style({justifyContent: 'center', alignItems: 'center'})
 
 // Créer la courbe
-let pathData = "M4,100 Q100,10 196,100";
+let pathData = "m 0 0 q 74 -87 159 0";
 
 let path = svg.append("path")
     .attr("d", pathData)
@@ -44,8 +46,8 @@ let pathRemaining = svg.append("path")
 // Créer le soleil
 let sun = svg.append("image")
     .attr("href", "../vue/assets/images/weather/clear-day.svg")
-    .attr("width", 60)
-    .attr("height", 60);
+    .attr("width", 30)
+    .attr("height", 30);
 
 let startCircle = svg.append("circle")
     .attr("r", 5)
@@ -59,7 +61,7 @@ let endCircle = svg.append("circle")
 let pathLength = path.node().getTotalLength();
 sun.attr("transform", function () {
     let point = path.node().getPointAtLength(sunPosition * pathLength);
-    return "translate(" + (point.x - 30) + "," + (point.y - 30) + ")";
+    return "translate(" + (point.x - 15) + "," + (point.y - 15) + ")";
 });
 
 [startCircle, endCircle].forEach(function (element, index) {
@@ -69,16 +71,4 @@ sun.attr("transform", function () {
     });
 });
 
-// Ajouter une ligne allant de startCircle à endCircle
-let line = svg.append("line")
-    .attr("x1", 0)
-    .attr("y1", function () {
-        let point = path.node().getPointAtLength(0);
-        return point.y;
-    })
-    .attr("x2", 200) // Utiliser la largeur de viewBox
-    .attr("y2", function () {
-        let point = path.node().getPointAtLength(pathLength);
-        return point.y;
-    })
-    .attr("stroke", "black");
+
