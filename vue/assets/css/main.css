@@ -60,6 +60,7 @@ body {
     padding: var(--pad);
     overflow-y: auto;
     overflow-x: hidden;
+    height: 100%;
 }
 
 .full {
@@ -155,6 +156,10 @@ body {
     /* NEW; needed for Firefox */
 }
 
+.small-glass {
+    padding: 5px !important;
+}
+
 .container>div>h3 {
     margin: 0;
 }
@@ -234,6 +239,7 @@ header {
     grid-template-columns: 1fr 1fr;
     gap: 25px;
     margin: 0 auto;
+    overflow: auto;
 }
 
 .feels {
@@ -401,5 +407,9 @@ header {
     .full {
         height: fit-content;
         width: fit-content;
+    }
+
+    .app {
+        height: auto;
     }
 }

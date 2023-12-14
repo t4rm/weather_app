@@ -156,13 +156,13 @@
                     </div>
                 </div>
                 <!-- Affichage des prévisions météo pour les jours suivants : -->
-                <div class="th" style="text-align: center;"><?=$forecastDay[0]?></div>
-                <div class="th2" style="text-align: center;"><?=$forecastDay[1]?></div>
-                <div class="th3" style="text-align: center;"><?=$forecastDay[2]?></div>
-                <div class="th4" style="text-align: center;"><?=$forecastDay[3]?></div>
-                <div class="th5" style="text-align: center;"><?=$forecastDay[4]?></div>
-                <div class="th6" style="text-align: center;"><?=$forecastDay[5]?></div>
-                <div class="th7" style="text-align: center;"><?=$forecastDay[6]?></div>
+                <div class="th small-glass" style="text-align: center;"><?=$forecastDay[0]?></div>
+                <div class="th2 small-glass" style="text-align: center;"><?=$forecastDay[1]?></div>
+                <div class="th3 small-glass" style="text-align: center;"><?=$forecastDay[2]?></div>
+                <div class="th4 small-glass" style="text-align: center;"><?=$forecastDay[3]?></div>
+                <div class="th5 small-glass" style="text-align: center;"><?=$forecastDay[4]?></div>
+                <div class="th6 small-glass" style="text-align: center;"><?=$forecastDay[5]?></div>
+                <div class="th7 small-glass" style="text-align: center;"><?=$forecastDay[6]?></div>
                 <div class="th8 forecast-more flex-center" style="text-align: center;"><span>See month</span></div>
 
             </div>
