@@ -12,8 +12,6 @@ let svg = container.append("svg")
     .attr("width", "100%")
     .attr("height", "100%")
     .attr("viewBox", "-5 -55 170 60")
-    // .attr("preserveAspectRatio","none")
-    // .style({justifyContent: 'center', alignItems: 'center'})
 
 // Créer la courbe
 let pathData = "m 0 0 q 74 -87 159 0";

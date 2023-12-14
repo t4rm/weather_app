@@ -24,7 +24,7 @@
 
 <body>
     <div class="app-container">
-        <div class="app">
+        <div class="app data-simplebar">
             <div class="container fill">
                 <div class="main">
                     <header>
@@ -44,7 +44,7 @@
                         </div>
                         <span class="feels">Feels like <?= $feelsLikeCelsius > 0 ? "+" : "-" ?><?= $feelsLikeCelsius ?></span>
                     </section>
-                    <aside class="statistics">
+                    <aside class="statistics" >
                         <span>Precipitation</span>
                         <span class="dot">
                             <svg class="visible" fill="#9AE0FD" height="20" width="20" viewBox="0 0 300 300" preserveAspectRatio="none">
@@ -177,6 +177,7 @@
     </div>
     <script src="../vue/assets/js/charts.js" type="module"></script>
     <script src="../vue/assets/js/sunpos.js" type="module"></script>
+    <script src="../vue/assets/js/simplebar.js" type="module"></script>
 
 </body>
 
