@@ -14,6 +14,9 @@
         const uvValues = <?= json_encode($uvArray) ?>;
         const uvColorValues = <?= json_encode($uvColorArray) ?>;
         const precipitationValues = <?= json_encode($precipitationArray) ?>;
+        let currentTime = <?=$currentHour?>;
+        let sunrise = <?=$sunriseHour?>;
+        let sunset = <?=$sunsetHour?>;
         // A modifier en AJAX
     </script>
     <link rel="stylesheet" href="../vue/assets/css/main.css">
@@ -21,7 +24,7 @@
 
 <body>
     <div class="app-container">
-        <div class="app">
+        <div class="app data-simplebar">
             <div class="container fill">
                 <div class="main">
                     <header>
@@ -41,7 +44,7 @@
                         </div>
                         <span class="feels">Feels like <?= $feelsLikeCelsius > 0 ? "+" : "-" ?><?= $feelsLikeCelsius ?></span>
                     </section>
-                    <aside class="statistics">
+                    <aside class="statistics" >
                         <span>Precipitation</span>
                         <span class="dot">
                             <svg class="visible" fill="#9AE0FD" height="20" width="20" viewBox="0 0 300 300" preserveAspectRatio="none">
@@ -56,7 +59,7 @@
                         <span class="dot">
                             <svg height="20" width="20" style="display: block">
                                 <circle cx="10" cy="10" r="7" fill="<?= $tempColor ?>"></circle>
-                            </svg><?= $windKph ?> km/h
+                            </svg><?= $windKph ?> km/h <?=$windDir?>
                         </span>
                         <span>Humidity</span>
                         <span class="dot">
@@ -137,9 +140,13 @@
                     </div>
                 </div>
                 <div class="sec2">
-                    <div class="astro">
-                        <span><?= $sunrise ?> Sunrise</span>
-                        <span>Sunset <?= $sunset ?></span>
+                    <div class="sunpos-grid">
+                        <h3 >Sunposition (approx)</h3>
+                        <div class="sunpath"></div>
+                        <div class="astro">
+                            <span><?= $sunrise ?> Sunrise</span>
+                            <span>Sunset <?= $sunset ?></span>
+                        </div>
                     </div>
                 </div>
 
@@ -156,20 +163,21 @@
                     </div>
                 </div>
                 <!-- Affichage des prévisions météo pour les jours suivants : -->
-                <div class="th" style="text-align: center;"><?=$forecastDay[0]?></div>
-                <div class="th2" style="text-align: center;"><?=$forecastDay[1]?></div>
-                <div class="th3" style="text-align: center;"><?=$forecastDay[2]?></div>
-                <div class="th4" style="text-align: center;"><?=$forecastDay[3]?></div>
-                <div class="th5" style="text-align: center;"><?=$forecastDay[4]?></div>
-                <div class="th6" style="text-align: center;"><?=$forecastDay[5]?></div>
-                <div class="th7" style="text-align: center;"><?=$forecastDay[6]?></div>
+                <div class="th small-glass" style="text-align: center;"><?=$forecastDay[0]?></div>
+                <div class="th2 small-glass" style="text-align: center;"><?=$forecastDay[1]?></div>
+                <div class="th3 small-glass" style="text-align: center;"><?=$forecastDay[2]?></div>
+                <div class="th4 small-glass" style="text-align: center;"><?=$forecastDay[3]?></div>
+                <div class="th5 small-glass" style="text-align: center;"><?=$forecastDay[4]?></div>
+                <div class="th6 small-glass" style="text-align: center;"><?=$forecastDay[5]?></div>
+                <div class="th7 small-glass" style="text-align: center;"><?=$forecastDay[6]?></div>
                 <div class="th8 forecast-more flex-center" style="text-align: center;"><span>See month</span></div>
 
             </div>
         </div>
     </div>
     <script src="../vue/assets/js/charts.js" type="module"></script>
-    <!-- <script src="../vue/assets/js/sunpos.js" type="module"></script> -->
+    <script src="../vue/assets/js/sunpos.js" type="module"></script>
+    <script src="../vue/assets/js/simplebar.js" type="module"></script>
 
 </body>
 

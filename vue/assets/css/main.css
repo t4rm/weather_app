@@ -15,6 +15,26 @@
     /* Opera/IE 8+ */
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 :root {
     --c-bg: rgb(75, 75, 75);
     --c-text: hsl(0, 0%, 10%);
@@ -35,24 +55,15 @@ body {
 
 .app-container {
     position: absolute;
-    height: auto;
-    bottom: calc(var(--pad)*1.5);
-    top: calc(var(--pad)*1.5);
-    left: var(--pad);
-    right: var(--pad);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    padding: var(--pad);
     overflow: auto;
 }
 
-.app-container::-webkit-scrollbar {
-    display: none;
-}
-
-.app-container {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-}
 
 .app {
     border-radius: 12px;
@@ -60,6 +71,7 @@ body {
     padding: var(--pad);
     overflow-y: auto;
     overflow-x: hidden;
+    height: 100%;
 }
 
 .full {
@@ -155,6 +167,10 @@ body {
     /* NEW; needed for Firefox */
 }
 
+.small-glass {
+    padding: 5px !important;
+}
+
 .container>div>h3 {
     margin: 0;
 }
@@ -234,6 +250,7 @@ header {
     grid-template-columns: 1fr 1fr;
     gap: 25px;
     margin: 0 auto;
+    overflow: auto;
 }
 
 .feels {
@@ -288,12 +305,7 @@ header {
     transition: 0.7s;
 }
 
-.astro {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-}
+
 /* Forecast des prochains jours : */
 .forecast-day {
     display: grid;
@@ -375,7 +387,28 @@ header {
     border: 0;
     transform: scale(1.1);
 }
+.astro {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    justify-self: end;
+    margin-top: auto !important;
+}
 
+.sunpath {
+    height: 100%;
+    min-height: 0;
+}
+
+.sunpos-grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.sunpos-grid * {
+    margin: 0;
+}
 
 /* PHONE : */
 @media (max-width: 1000px) {
@@ -401,5 +434,9 @@ header {
     .full {
         height: fit-content;
         width: fit-content;
+    }
+
+    .app {
+        height: auto;
     }
 }
