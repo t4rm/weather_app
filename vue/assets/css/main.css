@@ -151,6 +151,7 @@ body {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     padding: 20px;
     min-width: 0;
+    min-height: 0;
     /* NEW; needed for Firefox */
 }
 
@@ -292,6 +293,87 @@ header {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
+}
+/* Forecast des prochains jours : */
+.forecast-day {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    font-weight: 400;
+    height: calc(100% - 10px);
+}
+
+.forecast-detail {
+    font-size: max(10px, 0.7vw);
+}
+
+.forecast-caption {
+    color: rgb(158, 158, 158);
+    min-height: 0;
+    min-width: 0;
+}
+
+.forecast-header {
+    font-size: max(30px, 1.2vw);
+}
+
+.forecast-header {
+    color: black;
+}
+
+.forecast-icon {
+    position: relative;
+}
+
+.forecast-icon > img {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.forecast-night {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    flex: 30%;
+    min-height: 0;
+    min-width: 0;
+}
+.flex-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.forecast-month {
+    color: rgba(0, 0, 0, 0.7);
+    margin-left: 10px;
+}
+
+.forecast-more {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #9e9e9e29 !important;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+.forecast-more:hover {
+    border: 0;
+    transform: scale(1.1);
 }
 
 

@@ -137,15 +137,12 @@
                     </div>
                 </div>
                 <div class="sec2">
-                <div class="astro">
+                    <div class="astro">
                         <span><?= $sunrise ?> Sunrise</span>
                         <span>Sunset <?= $sunset ?></span>
                     </div>
                 </div>
-                <div class="th">
 
-                </div>
-                <div class="th2"></div>
                 <div class="sec3">
                     <h3>UV Index</h3>
                     <div class="chart-container" style="position: relative; height:19vh;">
@@ -158,13 +155,15 @@
                         <canvas id="precipChart"></canvas>
                     </div>
                 </div>
-                <div class="th3">
-                </div>
-                <div class="th4"></div>
-                <div class="th5"></div>
-                <div class="th6"></div>
-                <div class="th7"></div>
-                <div class="th8"></div>
+                <!-- Affichage des prévisions météo pour les jours suivants : -->
+                <div class="th" style="text-align: center;"><?=$forecastDay[0]?></div>
+                <div class="th2" style="text-align: center;"><?=$forecastDay[1]?></div>
+                <div class="th3" style="text-align: center;"><?=$forecastDay[2]?></div>
+                <div class="th4" style="text-align: center;"><?=$forecastDay[3]?></div>
+                <div class="th5" style="text-align: center;"><?=$forecastDay[4]?></div>
+                <div class="th6" style="text-align: center;"><?=$forecastDay[5]?></div>
+                <div class="th7" style="text-align: center;"><?=$forecastDay[6]?></div>
+                <div class="th8 forecast-more flex-center" style="text-align: center;"><span>See month</span></div>
 
             </div>
         </div>
