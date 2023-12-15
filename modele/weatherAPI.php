@@ -1,7 +1,7 @@
 <?php
 class Weather
 {
-    private $key = $_ENV["APIKEY"];
+    private $key = "fe870e8969a94637931122722231212";
     private $url = "http://api.weatherapi.com/v1/current.json";
     private $hashMapIcon = [
         "1000"=> "clear-day",

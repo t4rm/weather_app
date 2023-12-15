@@ -49,9 +49,13 @@ $moonset = $result["forecast"]["forecastday"][0]["astro"]["moonset"];
 // ASTRO to TIME :
 $sunsetTime = DateTime::createFromFormat("h:i A", $sunset);
 $sunriseTime = DateTime::createFromFormat("h:i A", $sunrise);
+$moonsetTime = DateTime::createFromFormat("h:i A", $moonset);
+$moonriseTime = DateTime::createFromFormat("h:i A", $moonrise);
 // $sunTime = DateTime::createFromFormat("h:i A", $sunrise);
 $sunsetHour = $sunsetTime->format('H');
 $sunriseHour = $sunriseTime->format('H');
+$moonsetHour = $moonsetTime->format('H');
+$moonriseHour = $moonriseTime->format('H');
 $currentHour = $currentDateTime->format('H');
 
 // Définition des couleurs en fonction des variables :

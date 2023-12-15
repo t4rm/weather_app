@@ -1,10 +1,19 @@
 // Données d'entrée
 sunrise = parseInt(sunrise); // Heure du lever du soleil
 sunset = parseInt(sunset); // Heure du coucher du soleil
+moonrise = parseInt(moonrise); // Heure du lever du soleil
+moonset = parseInt(moonset); // Heure du coucher du soleil
 currentTime = parseInt(currentTime); // Heure actuelle
-
-// Calculer la position du soleil
+let color = "orange";
 let sunPosition = (currentTime - sunrise) / (sunset - sunrise);
+let day = "day";
+
+if(currentTime < sunrise || currentTime > sunset) {
+    sunPosition = (moonset - moonrise) / (currentTime - moonrise) 
+    console.log(moonrise, moonset, currentTime)
+    color = "grey"
+    day = "night";
+}
 
 // Créer le SVG
 let container = d3.select(".sunpath")
@@ -24,7 +33,7 @@ let path = svg.append("path")
 // Créer la partie de la courbe déjà parcourue par le soleil
 let pathCovered = svg.append("path")
     .attr("d", pathData)
-    .attr("stroke", "orange")
+    .attr("stroke", color)
     .attr("fill", "transparent")
     .attr("stroke-dasharray", function () {
         let pathLength = this.getTotalLength();
@@ -34,7 +43,7 @@ let pathCovered = svg.append("path")
 // Créer la partie de la courbe restante
 let pathRemaining = svg.append("path")
     .attr("d", pathData)
-    .attr("stroke", "orange")
+    .attr("stroke", color)
     .attr("fill", "transparent")
     .attr("stroke-dasharray", "5,5")
     .attr("stroke-dashoffset", function () {
@@ -43,17 +52,17 @@ let pathRemaining = svg.append("path")
 
 // Créer le soleil
 let sun = svg.append("image")
-    .attr("href", "../vue/assets/images/weather/clear-day.svg")
+    .attr("href", "../vue/assets/images/weather/clear-"+day+".svg")
     .attr("width", 30)
     .attr("height", 30);
 
 let startCircle = svg.append("circle")
     .attr("r", 2)
-    .attr("fill", "orange");
+    .attr("fill", color);
 
 let endCircle = svg.append("circle")
     .attr("r", 2)
-    .attr("fill", "orange");
+    .attr("fill", color);
 
 // Mettre à jour la position du soleil et de son fond
 let pathLength = path.node().getTotalLength();
