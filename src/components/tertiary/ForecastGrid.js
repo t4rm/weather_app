@@ -16,8 +16,8 @@ const ForecastGrid = () => {
     const mode = option.mode;
 
     const forecastList = forecastPath.map((day, index) => {
-        if(seeMore && index < 7) return;
-        if(!seeMore && index > 6) return;        
+        if(seeMore && index < 7) return null;
+        if(!seeMore && index > 6) return null;        
 
         return <ForecastDay
             key={day["date_epoch"]}
