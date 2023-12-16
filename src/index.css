@@ -1,0 +1,454 @@
+/* Palette : */
+/* #9AE0FD -> Eau */
+/* #AFCA07 -> Vert herbe*/
+/* #ACC900 -> Vert herbe clair*/
+/* #4DB201 -> Vert*/
+/* #4CB400 -> Vert foncé*/
+/* #FBD202 -> Jaune*/
+
+* {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+:root {
+  --c-bg: rgb(75, 75, 75);
+  --c-text: hsl(0, 0%, 10%);
+  --c-text-opacity: hsla(0, 0%, 10%, 0.5);
+  --pad: max(20px, 4vmin)
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  font-size: 17px;
+  font-weight: 600;
+  background-color: var(--c-bg);
+  overflow: hidden;
+}
+
+.app-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  padding: var(--pad);
+  overflow: auto;
+}
+
+
+.app {
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255);
+  padding: var(--pad);
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.full {
+  height: calc(100vh - var(--pad) * 5);
+  width: calc(100vw - var(--pad) * 4);
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+}
+
+
+/* Display Layout */
+/* PC : */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 0.45fr 0.45fr;
+  gap: calc(var(--pad)/2);
+  min-height: 0;
+  /* NEW */
+  min-width: 0;
+  /* NEW; needed for Firefox */
+  grid-auto-flow: row;
+  grid-template-areas:
+    "main main sec sec sec3 sec3"
+    "main main sec2 sec2 sec4 sec4"
+    "main main th0 th1 th2 th3"
+    "main main th4 th5 th6 see";
+}
+
+.main {
+  grid-area: main;
+  margin-right: calc(var(--pad)*0.7);
+}
+
+.sec {
+  grid-area: sec;
+}
+
+.sec2 {
+  grid-area: sec2;
+}
+
+.sec3 {
+  grid-area: sec3;
+}
+
+.sec4 {
+  grid-area: sec4;
+}
+
+.th0 {
+  grid-area: th0;
+}
+
+.th1 {
+  grid-area: th1;
+}
+
+.th2 {
+  grid-area: th2;
+}
+
+.th3 {
+  grid-area: th3;
+}
+
+.th4 {
+  grid-area: th4;
+}
+
+.th5 {
+  grid-area: th5;
+}
+
+.th6 {
+  grid-area: th6;
+}
+
+.see {
+  grid-area: see;
+}
+
+
+
+/* GLASS */
+.container>div,
+.glass {
+  background: #a7e2f029;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  min-width: 0;
+  min-height: 0;
+  /* NEW; needed for Firefox */
+}
+
+.small-glass {
+  padding: 5px !important;
+}
+
+.container>div>h3 {
+  margin: 0;
+}
+
+
+.noblur {
+  background: rgba(239, 252, 255, 0.16);
+  backdrop-filter: blur(12.3px);
+  -webkit-backdrop-filter: blur(12.3px);
+}
+
+/* Agencement MAIN */
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.icon>img {
+  width: 100vw;
+  max-width: 40%;
+}
+
+.state {
+  color: orange;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.state * {
+  font-weight: 400;
+  margin: 0;
+}
+
+.state>h1 {
+  font-size: 150pt;
+  transform: scaleY(1.15);
+  height: fit-content;
+}
+
+.state>.operator {
+  font-size: 90pt;
+  align-self: center;
+}
+
+.state>.degree {
+  font-size: 40pt;
+}
+
+/* Statistics 2 COLUMN Layout */
+.statistics {
+  font-weight: 400;
+  margin-top: 30px;
+  padding: 10px;
+  font-size: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin: 0 auto;
+  overflow: auto;
+}
+
+.feels {
+  position: relative;
+  top: -20px;
+}
+
+/* DOTS */
+.dot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dot * {
+  margin-right: 6px;
+}
+
+.visible {
+  overflow: visible;
+}
+
+/* HOVER MORE DETAILS : */
+.aqi-container {
+  position: absolute;
+  visibility: hidden;
+}
+
+.aqi:hover {
+  cursor: copy;
+}
+
+.aqi:hover>.aqi-container {
+  visibility: visible;
+  display: flex;
+}
+
+.aqi:hover>.aqi-container>.aqi-stats {
+  opacity: 1;
+  transition: 0.7s;
+}
+
+.aqi-stats {
+  position: relative;
+  margin: 0;
+  display: grid;
+  grid-template-columns: fit-content(100%) fit-content(100%);
+  gap: 15px;
+  padding: 10px;
+  font-size: 18px;
+  opacity: 0;
+  transition: 0.7s;
+}
+
+
+/* Forecast des prochains jours : */
+.forecast-day {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr) auto;
+  font-weight: 400;
+  height: calc(100% - 10px);
+}
+
+.forecast-detail {
+  font-size: max(10px, 0.7vw);
+}
+
+.forecast-caption {
+  color: rgb(158, 158, 158);
+  min-height: 0;
+  min-width: 0;
+}
+
+.forecast-header {
+  font-size: max(30px, 1.2vw);
+}
+
+.forecast-header {
+  color: black;
+}
+
+.forecast-icon {
+  position: relative;
+}
+
+.forecast-icon>img {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.forecast-night {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  flex: 30%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+.forecast-month {
+  color: rgba(0, 0, 0, 0.7);
+  margin-left: 10px;
+}
+
+.forecast-more {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #9e9e9e29 !important;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.forecast-more:hover {
+  border: 0;
+  transform: scale(1.1);
+}
+
+.astro {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  justify-self: end;
+  margin-top: auto !important;
+}
+
+.sunpath {
+  height: 100%;
+  min-height: 0;
+}
+
+.sunpos-grid {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sunpos-grid * {
+  margin: 0;
+}
+
+.sun-switch {
+  position: absolute;
+}
+
+/* PHONE : */
+@media (max-width: 1000px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main {
+    margin-right: 0;
+  }
+
+  .container>div {
+    height: 100%;
+    width: 100%;
+  }
+
+  .container>div,
+  .glass {
+    padding: 10px;
+  }
+
+  .full {
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .app {
+    height: auto;
+  }
+}
