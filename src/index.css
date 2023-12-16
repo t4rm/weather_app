@@ -162,7 +162,7 @@ body {
 /* GLASS */
 .container>div,
 .glass {
-  background: #a7e2f029;
+  background: rgba(167, 226, 240, 0.161);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   padding: 20px;
