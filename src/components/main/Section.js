@@ -37,7 +37,7 @@ const Section = () => {
         <img src={iconSVG} alt='Weather icon' />
         <figcaption>{currentWeatherStatus}</figcaption>
       </figure>
-      <div className='state' style={{ color: currentTempColor }}>
+      <div className='state' style={{ color: currentTempColor, overflow: "clip"}}>
         <p className='operator'>{currentTemp < 0 ? "-" : "+"}</p>
         <h1>{currentTemp}</h1>
         <p className='degree'>°{mode.toUpperCase()}</p>

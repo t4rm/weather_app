@@ -47,7 +47,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat';
-  font-size: 17px;
+  font-size: max(1vw,1vh,20px);
   font-weight: 600;
   background-color: var(--c-bg);
   overflow: hidden;
@@ -190,7 +190,10 @@ body {
 .main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 10px;
+  margin: calc(var(--pad)*-1);
+  margin-right: var(--pad)
 }
 
 header {
@@ -212,8 +215,11 @@ header {
 }
 
 .icon>img {
+  max-width: 75%;
   width: 100vw;
-  max-width: 40%;
+  margin-top: -20%;
+  margin-bottom: -15%;
+
 }
 
 .state {
@@ -230,7 +236,7 @@ header {
 }
 
 .state>h1 {
-  font-size: 150pt;
+  font-size: max(150pt, 20vh);
   transform: scaleY(1.15);
   height: fit-content;
 }
@@ -249,7 +255,7 @@ header {
   font-weight: 400;
   margin-top: 30px;
   padding: 10px;
-  font-size: 20px;
+  font-size: max(2vh, 20px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
@@ -368,6 +374,8 @@ header {
   flex: 30%;
   min-height: 0;
   min-width: 0;
+  height: 85%;
+  justify-content: center;
 }
 
 .flex-center {
@@ -423,14 +431,15 @@ header {
 }
 
 /* PHONE : */
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .container {
     display: flex;
     flex-direction: column;
   }
 
   .main {
-    margin-right: 0;
+    /* margin-right: 0; */
+    margin: 0;
   }
 
   .container>div {
