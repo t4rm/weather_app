@@ -21,7 +21,7 @@
     <a href="https://weather.mechkenetarek.com"><strong>Visit the website »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/t4rm/weather_app/assets/video/demo.mp4">View Demo</a>
+    <a href="https://github.com/t4rm/weather_app/assets/readme/demo.mp4">View Demo</a>
     ·
     <a href="https://github.com/t4rm/weather_app/issues">Report Bug</a>
     ·
