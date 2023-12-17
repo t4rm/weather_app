@@ -18,7 +18,7 @@
   <p align="center">
     Weather, forecast and much more brought together in one app.
     <br />
-    <a href="https://github.com/t4rm/weather_app/wiki"><strong>Explore the docs »</strong></a>
+    <a href="https://weather.mechkenetarek.com"><strong>Visit the website »</strong></a>
     <br />
     <br />
     <a href="https://github.com/t4rm/weather_app/assets/video/demo.mp4">View Demo</a>
@@ -26,8 +26,6 @@
     <a href="https://github.com/t4rm/weather_app/issues">Report Bug</a>
     ·
     <a href="https://github.com/t4rm/weather_app/issues">Request Feature</a>
-    ·
-    <a href="https://weather.mechkenetarek.com">Visit Website</a>
   </p>
 </div>
 
@@ -133,7 +131,6 @@ To get a local copy up and running follow these simple example steps.
 
   ![image][seemore]
 
-_For more examples, please refer to the [Documentation](https://github.com/t4rm/weather_app/wiki)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
