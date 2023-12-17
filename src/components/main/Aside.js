@@ -24,9 +24,9 @@ const Aside = () => {
     )
 
     return (
-    <aside className='statistics'>
-        {statListe}
-    </aside>
+        <aside className='statistics'>
+            {statListe}
+        </aside>
     );
 };
 

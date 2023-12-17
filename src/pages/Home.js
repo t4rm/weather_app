@@ -19,7 +19,7 @@ const Home = () => {
     return (
         <div className="app-container">
             <div className="app">
-                    {loading ? <Loading /> : <div className="container fill"><Main /> <ChartGrid /> <ForecastGrid /></div>}
+            {loading ? <Loading /> : <div className="container fill"><Main /> <ChartGrid /> <ForecastGrid /></div>}
             </div>
         </div>
     );

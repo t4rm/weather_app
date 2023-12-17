@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 // eslint-disable-next-line
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Chart } from 'react-chartjs-2';
-import { getTemperatureColor } from "../../utils/colorFunctions";
+import { getTemperatureColor, getUVIndexColor} from "../../utils/colorFunctions";
 
 // Return a gradient for an array of temperatures based on the temperature colors from colorFunctions
 function getGradientTemperature(chart, data, mode) {
@@ -28,11 +28,14 @@ const CanvasChart = (props) => {
   const chartRef = useRef(null);
   useEffect(() => {
     const chart = chartRef.current;
+    const label = chart.data.datasets[0].label;
     if (chart) {
       chart.data.datasets[0]["data"] = props.data.datasets[0]["data"]
       // Upon each update of the Temperature chart, we update the colors accordingly :
-      if (chart.data.datasets[0].label === "Temperature") {
+      if (label === "Temperature") {
         chart.data.datasets[0]["borderColor"] = getGradientTemperature(chart, props.data.datasets[0]["data"], props.mode)
+      } else if(label === "UV") {
+        chart.data.datasets[0]["backgroundColor"] = props.data.datasets[0]["data"].map((uv) => { return getUVIndexColor(uv) })
       }
 
       chart.update()

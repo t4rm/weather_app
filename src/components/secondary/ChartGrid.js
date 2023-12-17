@@ -6,7 +6,6 @@ import { data as dataTemperature, options as optionsTemperature } from "./data/T
 import { data as dataUV, options as optionsUV } from "./data/UVData.js";
 import { data as dataPrecipitation, options as optionsPrecipitation } from "./data/Precipitation.js";
 import { convertForecastDataToChartArray } from '../../utils/dataManipulation.js';
-import { getUVIndexColor } from "../../utils/colorFunctions.js";
 
 const ChartGrid = () => {
   const { data, loading, option } = useDataContext();
@@ -17,11 +16,10 @@ const ChartGrid = () => {
     const forecastData = data.forecast;
     const temperatureChartData = convertForecastDataToChartArray(forecastData, "temp_" + option.mode);
     const UVChartData = convertForecastDataToChartArray(forecastData, "uv").splice(7, 12)
-    const UVChartColors = UVChartData.map((uv) => { return getUVIndexColor(uv) });
     const precipitationChartData = convertForecastDataToChartArray(forecastData, "precip_mm");
 
     dataUV["datasets"][0]["data"] = UVChartData;
-    dataUV["datasets"][0]["backgroundColor"] = UVChartColors;
+    dataUV["datasets"][0]["backgroundColor"] = [];
     dataTemperature["datasets"][0]["data"] = temperatureChartData;
     dataPrecipitation["datasets"][0]["data"] = precipitationChartData.map((num) => { return num * 100 });
 

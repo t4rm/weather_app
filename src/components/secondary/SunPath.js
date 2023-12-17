@@ -41,13 +41,14 @@ const SunPath = () => {
         }
 
         // Clear previous svg (no overlapping)
-        d3.selectAll("svg > *").remove();
+        d3.selectAll("#d3SVG > *").remove();
 
         // Create the initial SVG
         let svg = d3.select(d3Container.current)
             .attr("width", "100%")
             .attr("height", "100%")
             .attr("viewBox", "-5 -55 170 60")
+            .attr("id","d3SVG")
 
         // Create a curve (https://yqnn.github.io/svg-path-editor/)
         let pathData = "m 0 0 q 74 -87 159 0";
