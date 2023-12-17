@@ -5,7 +5,7 @@ import gsap from "gsap";
 const Toggle = () => {
     const { loading, option, setOption, setParameter } = useDataContext();
     const [toggle, setToggle] = useState(true);
-    const [hidden, setHidden] = useState("");
+    const [hidden, setHidden] = useState(" hidden");
 
     if (loading) return;
     var tl = new gsap.timeline();

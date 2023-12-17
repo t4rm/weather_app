@@ -16,11 +16,19 @@ export const DataProvider = ({ children }) => {
       await fetch(url).then(res => res.json()).then(res => {
         setParameter(res.address.city);
       })
+    }, async function (err) {
+      // if permission denied
+      if (err.code === 1) {
+        const url2 = `https://api.ipify.org?format=json`;
+        await fetch(url2).then(res => res.json()).then(res => {
+          setParameter(res.ip)
+        });
+      }
     })
   }
 
   useEffect(() => {
-    if(parameter === false) return;
+    if (parameter === false) return;
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get('http://api.weatherapi.com/v1/forecast.json?key=' + process.env.REACT_APP_KEY + '&q=' + parameter + '&days=14&aqi=yes&alerts=no');
