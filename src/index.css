@@ -47,7 +47,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat';
-  font-size: max(1vw,1vh,20px);
+  font-size: max(1vw, 1vh, 20px);
   font-weight: 600;
   background-color: var(--c-bg);
   overflow: hidden;
@@ -460,4 +460,67 @@ header {
   .app {
     height: auto;
   }
+}
+
+
+/* Flèche, accès au bandeau de navigation secondaire */
+.select-btn {
+  display: inline;
+  margin-left: 20px;
+  position: absolute;
+}
+
+.select-btn .arrow-dwn {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.select-btn.open .arrow-dwn {
+  transform: rotate(-180deg);
+}
+
+/* Bande de navigation secondaire */
+.select-btn .subnav-content {
+  margin: 0;
+  position: relative;
+  inset: -40%;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+/* Éléments du bandeau de navigation secondaire */
+/* .select-btn .subnav-content>a {
+} */
+
+/* .subnav-content>a:hover {
+  background-color: #2494d4;
+} */
+
+.select-btn.open .subnav-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.prevent-select {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+
+/* Loading animation : */
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.container {
+  opacity: 1;
+  transition: 0.7s;
 }

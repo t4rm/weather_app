@@ -38,11 +38,11 @@ const Section = () => {
         <figcaption>{currentWeatherStatus}</figcaption>
       </figure>
       <div className='state' style={{ color: currentTempColor, overflow: "clip"}}>
-        <p className='operator'>{currentTemp < 0 ? "-" : "+"}</p>
-        <h1>{currentTemp}</h1>
+        <p className='operator'>{currentTemp > 0 ? "+" : ""}</p>
+        <h1>{parseInt(currentTemp)}</h1>
         <p className='degree'>°{mode.toUpperCase()}</p>
       </div>
-      <span className='feels'>Feels like {currentFeels < 0 ? "-" : "+"} {currentFeels}</span>
+      <span className='feels'>Feels like {currentFeels < 0 ? "" : "+"} {currentFeels}</span>
     </section>
   );
 };

@@ -6,13 +6,24 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [option] = useState({"mode":"c"});
+  const [option, setOption] = useState({ "mode": "c" });
+  const [parameter, setParameter] = useState(false)
+
+  if (parameter === false) {
+    navigator.geolocation.getCurrentPosition(async pos => {
+      const { latitude, longitude } = pos.coords;
+      const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+      await fetch(url).then(res => res.json()).then(res => {
+        setParameter(res.address.city);
+      })
+    })
+  }
 
   useEffect(() => {
+    if(parameter === false) return;
     const fetchData = async () => {
       try {
-
-        const { data: response } = await axios.get('http://api.weatherapi.com/v1/forecast.json?key='+process.env.REACT_APP_KEY+'&q=Metz&days=14&aqi=yes&alerts=no');
+        const { data: response } = await axios.get('http://api.weatherapi.com/v1/forecast.json?key=' + process.env.REACT_APP_KEY + '&q=' + parameter + '&days=14&aqi=yes&alerts=no');
         setData(response);
       } catch (error) {
         console.error(error);
@@ -22,13 +33,15 @@ export const DataProvider = ({ children }) => {
 
     fetchData();
 
-  }, []);
+  }, [parameter]);
+
 
   return (
-    <DataContext.Provider value={{ data, loading, option }}>
+    <DataContext.Provider value={{ data, loading, option, setOption, setParameter }}>
       {children}
     </DataContext.Provider>
   );
 };
 
 export const useDataContext = () => useContext(DataContext);
+export default DataContext;
