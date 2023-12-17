@@ -14,8 +14,8 @@ const Header = () => {
     <header>
       <span>
         {locationData.name}, {locationData.country}
-        <Toggle />
       </span>
+      <Toggle />
       <span>Today, {currentDay.toLocaleDateString('en-us', { month: "short", day: "numeric" })}</span>
     </header>
   );

@@ -465,9 +465,11 @@ header {
 
 /* Flèche, accès au bandeau de navigation secondaire */
 .select-btn {
-  display: inline;
-  margin-left: 20px;
-  position: absolute;
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+  align-items: stretch;
+  justify-content: space-evenly;
 }
 
 .select-btn .arrow-dwn {
@@ -481,13 +483,19 @@ header {
 
 /* Bande de navigation secondaire */
 .select-btn .subnav-content {
-  margin: 0;
-  position: relative;
-  inset: -40%;
-  display: none;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
-  width: 100%;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 150%;
+  border-radius: 32px;
+  padding: calc(var(--pad)*0.5);
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
 
 /* Éléments du bandeau de navigation secondaire */
@@ -500,7 +508,9 @@ header {
 
 .select-btn.open .subnav-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .prevent-select {
@@ -523,4 +533,26 @@ header {
 .container {
   opacity: 1;
   transition: 0.7s;
+}
+
+/* Radio button styling  */
+.mode-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.mode-select > label {
+  background: rgba(166, 181, 190, 0.315);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.query-input {
+  border-radius: 8px;
+  padding: 10px;
 }
