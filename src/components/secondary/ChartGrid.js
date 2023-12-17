@@ -38,7 +38,7 @@ const ChartGrid = () => {
   return (
     <>
       {chartList.map((chart) =>
-        <CanvasChart key={chart.id} id={chart.id} name={chart.name} unit={chart.unit} class={chart.class} type={chart.type} data={chart.data} options={chart.options} />
+        <CanvasChart key={chart.id} id={chart.id} name={chart.name} unit={chart.unit} class={chart.class} type={chart.type} data={chart.data} options={chart.options} mode={option.mode}/>
       )}
       <SunPath />
     </>
