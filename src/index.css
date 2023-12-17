@@ -430,38 +430,6 @@ header {
   position: absolute;
 }
 
-/* PHONE : */
-@media (max-width: 1050px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .main {
-    /* margin-right: 0; */
-    margin: 0;
-  }
-
-  .container>div {
-    height: 100%;
-    width: 100%;
-  }
-
-  .container>div,
-  .glass {
-    padding: 10px;
-  }
-
-  .full {
-    height: fit-content;
-    width: fit-content;
-  }
-
-  .app {
-    height: auto;
-  }
-}
-
 
 /* Flèche, accès au bandeau de navigation secondaire */
 .select-btn {
@@ -469,6 +437,7 @@ header {
   align-self: center;
   position: relative;
   align-items: stretch;
+  align-self: baseline;
   justify-content: space-evenly;
 }
 
@@ -485,12 +454,15 @@ header {
 .select-btn .subnav-content {
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
-  width: fit-content;
-  height: fit-content;
   position: absolute;
   top: 150%;
   border-radius: 32px;
   padding: calc(var(--pad)*0.5);
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: fit-content;
 }
 
 .hidden {
@@ -554,5 +526,48 @@ header {
 
 .query-input {
   border-radius: 8px;
+  width: 20vw;
+  font-size: max(14px, 0.7vw);
   padding: 10px;
+}
+
+.header-flex > span {
+  max-width: 30%;
+}
+
+
+/* PHONE : */
+@media (max-width: 1050px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main {
+    /* margin-right: 0; */
+    margin: 0;
+  }
+
+  .container>div {
+    height: 100%;
+    width: 100%;
+  }
+
+  .container>div,
+  .glass {
+    padding: 10px;
+  }
+
+  .full {
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .app {
+    height: auto;
+  }
+
+  .query-input {
+    width: 100% !important;
+  }
 }
