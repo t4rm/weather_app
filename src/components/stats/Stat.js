@@ -19,7 +19,6 @@ const Stat = (props) => {
                 } {props.data} {props.unit}
                 {props.name === "Air Quality" ? <AQIStats /> : ""}
             </span>
-
         </React.Fragment>
     );
 };
