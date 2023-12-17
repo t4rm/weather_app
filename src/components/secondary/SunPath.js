@@ -40,14 +40,16 @@ const SunPath = () => {
             return;
         }
 
+        // Clear previous svg (no overlapping)
+        d3.selectAll("svg > *").remove();
 
-        // Créer le SVG
+        // Create the initial SVG
         let svg = d3.select(d3Container.current)
             .attr("width", "100%")
             .attr("height", "100%")
             .attr("viewBox", "-5 -55 170 60")
 
-        // Créer la courbe
+        // Create a curve (https://yqnn.github.io/svg-path-editor/)
         let pathData = "m 0 0 q 74 -87 159 0";
 
         let path = svg.append("path")
@@ -55,7 +57,7 @@ const SunPath = () => {
             .attr("stroke", "transparent")
             .attr("fill", "transparent");
 
-        // Créer la partie de la courbe déjà parcourue par le soleil
+        // We divise the curve in 2 parts, one fully filled and one dashed : one for the previous position of the Sun/Moon and one for the upcoming positions
         svg.append("path")
             .attr("d", pathData)
             .attr("stroke", color)
@@ -65,7 +67,6 @@ const SunPath = () => {
                 return (sunPosition * pathLength) + " " + pathLength;
             });
 
-        // Créer la partie de la courbe restante
         svg.append("path")
             .attr("d", pathData)
             .attr("stroke", color)
@@ -75,12 +76,13 @@ const SunPath = () => {
                 return this.getTotalLength() * sunPosition;
             });
 
-        // Créer le soleil
+        // Create a sun/moon :
         let sun = svg.append("image")
             .attr("href", "./assets/images/weather/clear-" + day + ".svg")
             .attr("width", 30)
             .attr("height", 30);
 
+            // Two circles for the design
         let startCircle = svg.append("circle")
             .attr("r", 2)
             .attr("fill", color);
@@ -89,7 +91,7 @@ const SunPath = () => {
             .attr("r", 2)
             .attr("fill", color);
 
-        // Mettre à jour la position du soleil et de son fond
+        // Update the Sun/Moon position
         let pathLength = path.node().getTotalLength();
 
         sun.attr("transform", function () {
@@ -97,6 +99,7 @@ const SunPath = () => {
             return "translate(" + (point.x - 15) + "," + (point.y - 15) + ")";
         });
 
+        // Add these two circles
         [startCircle, endCircle].forEach(function (element, index) {
             element.attr("transform", function () {
                 let point = path.node().getPointAtLength(index * pathLength);
