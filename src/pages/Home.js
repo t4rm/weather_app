@@ -11,8 +11,9 @@ const Home = () => {
     const { loading } = useDataContext();
 
     useGSAP(() => {
-        var tl = new gsap.timeline();
-        tl.fromTo(".loader", { opacity: 1, duration: 0.5 }, { opacity: 0, duration: 0.5 })
+        var tl = new gsap.timeline({repeat: -1});
+        tl.fromTo(".loader", { opacity: 1, duration: 0.5 }, { opacity: 0, duration: 1 })
+        tl.fromTo(".loader", { opacity: 0, duration: 0.5 }, { opacity: 1, duration: 1 })
     })
 
     return (
